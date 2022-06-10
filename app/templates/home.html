@@ -36,7 +36,7 @@
 }
 </script>
 <br><br>
-<form method="post">
+<form method="post" style="margin-top: -50px">
 <div class="alert">
 <div class="row justify-content-md-center">
   <div class="col col-sm-3">
@@ -51,14 +51,16 @@
           <option {% if el[0] %} selected="selected" {% endif %} value="{{el[1].id}}">{{el[1].name}}</option>
               {% endfor %}
       </select>
+	  </form>
+  </div>
+	<div class="col col-sm-3">
+		<button type="submit" class="btn btn-primary mx-5" style="margin-top: 25px"> Сохранить таблицу </button>
+	</div>
+</div>
+</div>
+</div>
+</div>
       </form>
-</div>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
 	<style type="text/css" >
 		html, body{
 			margin:0px;

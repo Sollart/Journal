@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3ce37ee2-88ac-49a8-8e81-7758109456fb" name="Changes" comment="Журнал">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/relations.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/relations.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/journal.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/journal.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +181,7 @@
       <workItem from="1654865276286" duration="5682000" />
       <workItem from="1654871082955" duration="4801000" />
       <workItem from="1654880786943" duration="526000" />
-      <workItem from="1654881372707" duration="2784000" />
+      <workItem from="1654881372707" duration="7000000" />
     </task>
     <task id="LOCAL-00001" summary="Журнал">
       <created>1654881782679</created>
@@ -195,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654883388239</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Журнал">
+      <created>1654884254729</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654884254729</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +226,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Журнал" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Journal$main.coverage" NAME="main Coverage Results" MODIFIED="1654882848673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Journal$main.coverage" NAME="main Coverage Results" MODIFIED="1654888230954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Journal$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1654640014670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
 </project>

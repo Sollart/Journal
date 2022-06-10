@@ -56,21 +56,15 @@ class Teachers(db.Model, UserMixin):
     def __repr__(self):
         return 'Teachers %r' % self.id
 
-
-class Poseshaemost(db.Model):
+class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-
-    journal_id = db.Column(db.String(300), db.ForeignKey('journal.id'), nullable=False)
-
-    mark = db.Column(db.Integer(), nullable=False)
-    category_discipline = db.Column(db.String(100), nullable=False)
+    student = db.Column(db.String(200), nullable=False)
+    discipline = db.Column(db.String(200), nullable=False)
+    teacher = db.Column(db.String(200), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, journal_id, mark, category_discipline, date):
-        self.journal_id = journal_id
-        self.mark = mark
-        self.category_discipline = category_discipline
-        self.date = date
+    def __repr__(self):
+        return 'Table %r' % self.id
 
 
 class Discipline(db.Model):
