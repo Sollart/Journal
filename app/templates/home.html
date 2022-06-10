@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<script>
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
+<br><br>
+<form method="post">
+<div class="alert">
+<div class="row justify-content-md-center">
+  <div class="col col-sm-3">
+    <h6>Преподаватель:</h6>
+    <p><b> {{ teacher_name }} </b></p>
+    </div>
+  <div class="col col-sm-3">
+     <h6>Выберите дисциплину</h6>
+      <form method="post">
+      <select class="form-select" name="selected_discipline_id">
+              {% for el in dn %}
+          <option {% if el[0] %} selected="selected" {% endif %} value="{{el[1].id}}">{{el[1].name}}</option>
+              {% endfor %}
+      </select>
+      </form>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+	<style type="text/css" >
+		html, body{
+			margin:0px;
+			padding:0px;
+			height:100%;
+			overflow:hidden;
+		}
+		.one_line{
+			white-space:nowrap;
+			overflow:hidden;
+			padding-top:5px; padding-left:5px;
+			text-align:left !important;
+		}
+	</style>
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				timeline: true,
+				treetimeline: true,
+			});
+			scheduler.i18n.setLocale("ru");
+			scheduler.locale.labels.timeline_tab = " Календарь ";
+			scheduler.locale.labels.section_custom= "Студент";
+			scheduler.config.details_on_create=true;
+			scheduler.config.details_on_dblclick=true;
+			scheduler.config.multi_day = false;
+			scheduler.config.full_day = false;
+			brief_mode = false;
+
+
+			//===============
+			//Configuration
+			//===============
+
+			var elements = [ // original hierarhical array to display
+				{key:10, label:"18 ФИИТ", open: true, children: [
+					{key:20, label:"Elizabeth Taylor"},
+					{key:30, label:"Dian Fossey"}
+					]},
+				{key:40, label:"18 ПМИ ", open:true, children: [
+					{key:50, label:"Kate Moss"},
+					{key:60, label:"Dian Fossey"}
+				]},
+					{key:70, label:"18 ИСТ ", open:true, children: [
+					{key:80, label:"Kate Moss"},
+					{key:90, label:"Dian Fossey"}
+				]},
+					{key:100, label:"18 ИВТ ", open:true, children: [
+					{key:110, label:"Kate Moss"},
+					{key:120, label:"Dian Fossey"}
+				]},
+					{key:130, label:"18 ПИНЖ ", open:true, children: [
+					{key:140, label:"Kate Moss"},
+					{key:150, label:"Dian Fossey"}
+				]},
+			];
+
+			scheduler.createTimelineView({
+				section_autoheight: false,
+				name:	"timeline",
+				x_unit:	"day",
+				x_date:	"%d %M",
+				x_step:	1,
+				x_size: 21,
+				x_length: 48,
+				y_unit: elements,
+				y_property:	"section_id",
+				render: "tree",
+				folder_dy:25,
+				dy:60
+			});
+
+
+
+
+			//===============
+			//Data loading
+			//===============
+			scheduler.config.lightbox.sections=[
+				{name:"description", height:50, map_to:"text", type:"textarea" , focus:true},
+				{name:"custom", height:30, type:"timeline", options:null , map_to:"section_id" }, //type should be the same as name of the tab
+				{name:"time", height:72, type:"time", map_to:"auto"}
+			];
+
+			scheduler.init('scheduler_here',new Date(),"timeline");
+			scheduler.load("./data/units.json");
+		});
+	</script>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:80%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button">&nbsp;</div>
+			<div class="dhx_cal_next_button">&nbsp;</div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+
+			<input class="btn btn-primary" type="button"  name="print" value="Экспорт в PNG" onclick="scheduler.exportToPNG({ orientation: 'landscape', name:'Журнал посещения.png'})" style='position:absolute; right:272px; top:12px; padding:5px 20px;'>
+
+			<div class="dhx_cal_tab" data-tab="day" style="right:204px;"></div>
+			<div class="dhx_cal_tab" data-tab="week" style="right:140px;"></div>
+			<div class="dhx_cal_tab" data-tab="timeline" style="right:280px;"></div>
+			<div class="dhx_cal_tab" data-tab="month" style="right:76px;"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+
+{% endblock %}

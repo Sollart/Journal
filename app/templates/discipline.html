@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-3">
+    <div class="row justify-content-end">
+        <div class="auto">
+<h2>Отображение дисциплин</h2>
+            </div>
+</div>
+    {% if discipline|length > 0 %}
+        {% for el in discipline %}
+        <div class="alert alert-info">
+            <p><b>Дисциплина: {{el.name}}</b></p>
+            <p><b>Преподаватель: {{el.teacher.name}}</b></p>
+            <a href="/discipline/{{el.id}}" class="btn btn-warning"> Подробнее </a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Нет ни одной дисциплины!</p>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Добавление студентов</h1><br>
+<form method="post">
+    <input type="text" name = "name" id="name" class="form-control" placeholder="Введите ФИО студента"><br>
+    <input name="curs" id="curs" class="form-control" placeholder="Введите курс обучения"><br>
+    <input name="faculty" id="faculty" class="form-control" placeholder="Введите факультет"><br>
+    <input name="department" id="department" class="form-control" placeholder="Введите кафедру "><br>
+    <input name="group" id="group" class="form-control" placeholder="Введите группу"><br>
+    <input name="card_number" id="card_number" class="form-control" placeholder="Введите номер зачетной книжки"><br>
+    <input name="number_phone" id="number_phone" class="form-control" placeholder="Введите номер телефона"><br>
+    <input name="mail" id="mail" class="form-control" placeholder="Введите почту"><br>
+    <input type="submit" class="btn btn-success" value="Добавить">
+</form>
+    </div>
+{% endblock %}

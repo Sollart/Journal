@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+
+{% block body %}
+<style>
+   .container_main
+   {
+    width:58%;
+    height:58%;
+    margin-left: auto;
+    margin-right: auto;
+   }
+   .alert
+   {
+    border-radius: 25px;
+    background: linear-gradient(to top left, powderblue, pink);
+   }
+</style>
+<br>
+<div class="container_main">
+<div class="container-fluid text-dark">
+     <div class="alert">
+  <div class="row justify-content-center align-items-center">
+    <h2 align="center">Регистрация пользователя</h2>
+      <div class="row justify-content-center align-items-center">
+         <div class="col-auto">
+    <form method="POST">
+        <table>
+            <br>
+             <tr>
+                <td><h6>Имя преподавателя</h6></td>
+                 <td><input type="text" name = "name" id="name" class="form-control" placeholder="Введите ФИО"></td>
+            </tr>
+            <tr>
+                <td><h6>Логин</h6></td>
+                <td><input type="login" name = "login" id="login" class="form-control" placeholder="Введите логин"></td>
+            </tr>
+            <tr>
+                <td><h6>Пароль</h6></td>
+                <td><input type="password" name = "password" id="password" class="form-control" placeholder="Введите пароль"></td>
+            </tr>
+            <tr>
+                <td><h6>Должность</h6></td>
+                <td><input type="text" name="post" id="post" class="form-control" placeholder="Введите должность"></td>
+            </tr>
+              <tr>
+                <td><h6>Кафедра</h6></td>
+                <td><input type="text" name="department" id="department" class="form-control" placeholder="Введите кафедру"></td>
+            </tr>
+            <tr>
+                <td><br><a class="btn btn-secondary" href="/login" role="button"> Войти </a></td>
+                <td><br><button type="submit" class="btn btn-primary"> Зарегистрироваться </button></td>
+            </tr>
+        </table>
+    </form>
+         </div>
+      </div>
+  </div>
+  </div>
+</div>
+</div>
+{% endblock %}

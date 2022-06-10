@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+{% block body %}
+<style>
+   .container_main
+   {
+    width:58%;
+    height:58%;
+    margin-left: auto;
+    margin-right: auto;
+   }
+   .alert
+   {
+    border-radius: 25px;
+    background: linear-gradient(to top left, powderblue, pink);
+   }
+
+</style>
+<div class="container_main">
+    <br><br><br>
+<div class="container-fluid text-dark">
+     <div class="alert">
+  <div class="row justify-content-center align-items-center">
+    <h2 align="center">Создать связь</h2>
+      <div class="row justify-content-center align-items-center">
+         <div class="col-auto">
+ <form method="POST">
+        <table id="relations">
+            <br>
+             <tr>
+                <td><h6>Имя преподавателя</h6></td>
+                 <td>
+                     <select name="teacher" class="form-select">
+                    {% for el in teachers %}
+                    <option value="{{ el.id }}">{{ el.name }}</option>
+                         {% endfor %}
+                     </select>
+                 </td>
+            </tr>
+            <tr>
+                <td><h6>Студент</h6></td>
+                <td>
+                    <select name="student" class="form-select">
+                    {% for el in students %}
+                    <option value="{{ el.id }}">{{ el.name }}</option>
+                    {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><h6>Дисциплина</h6></td>
+                <td>
+                     <select name="discipline" class="form-select">
+                    {% for el in disciplines %}
+                    <option value="{{ el.id }}">{{ el.name }}</option>
+                    {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <br>
+            <tr>
+     <td><br><button type="submit" class="btn btn-primary"> Добавить связь </button></td>
+     <td><br><a class="btn btn-primary offset-7" href="/journal" role="button"> Перейти в журнал </a></td>
+     </tr>
+        </table>
+
+ </form>
+        </div>
+    </div>
+    </div>
+     </div>
+</div>
+</div>
+{% endblock %}

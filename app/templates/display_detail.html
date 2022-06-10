@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ student.name }}
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+<h2>{{ student.name }}</h2><br>
+
+    <div class="alert alert-info">
+        <p><b>ФИО: {{student.name}}</b></p>
+        <p><b>Курс: {{student.curs}}</b></p>
+        <p><b>Факультет: {{student.faculty}}</b></p>
+        <p><b>Кафедра: {{student.department}}</b></p>
+        <p><b>Группа: {{student.group}}</b></p>
+        <p><b>Номер зачетки: {{student.card_number}}</b></p>
+        <p><b>Номер телефона: {{student.number_phone}}</b></p>
+        <p><b>Почта: {{student.mail}}</b></p>
+        <p><b>Дата размещения: {{student.date.date()}}</b></p>
+          <a href="/display/{{student.id}}/delete" class="btn btn-danger">Удалить</a>
+          <a href="/display/{{student.id}}/update" class="btn btn-success">Редактировать</a>
+    </div>
+</div>
+{% endblock %}

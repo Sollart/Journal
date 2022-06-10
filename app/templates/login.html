@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+{% block body %}
+<style>
+   .container_main
+   {
+    width:48%;
+    height:58%;
+    margin-left: auto;
+    margin-right: auto;
+   }
+   .alert
+   {
+    border-radius: 75px;
+    background: linear-gradient(to top left, powderblue, pink);
+   }
+
+</style>
+<br>
+<div class="container_main">
+<div class="container-fluid text-dark">
+     <div class="alert">
+  <div class="row justify-content-center align-items-center">
+    <h2 align="center">Вход пользователя</h2>
+    <div class="row justify-content-center">
+         <div class="col-auto">
+    <form method="POST">
+              <br>
+        <table>
+            <tr>
+                <td><h6>Логин</h6></td>
+                <td><input class="form-control" type="text" name="login" id="login" placeholder="Введите логин"></td>
+            </tr>
+            <tr>
+                <td><h6>Пароль</h6></td>
+                <td><input class="form-control" type="password" name="password" id="password" placeholder="Введите пароль"></td>
+            </tr>
+            <tr>
+                <td><br><a class="btn btn-secondary " href="/register" role="button"> Зарегистрироваться </a></td>
+                <td><br><button type="submit" class="btn btn-primary offset-4"> Войти </button></td>
+            </tr>
+        </table>
+        <br>
+    </form>
+         </div>
+</div>
+</div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Добавление дисциплины</h1><br>
+<form method="POST">
+    <input type="text" name = "name" id="name" class="form-control" placeholder="Введите наименование дисциплины"><br>
+    <select class="form-select" name="teacher" id="teacher" aria-label="Default select example">
+        {% for el in teachers %}
+        <option  value="{{el.id}}">{{el.name}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" class="btn btn-success" value="Добавить">
+</form>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+<h1>Отображение студентов</h1><br>
+
+    {% if student|length > 0 %}
+        {% for el in student %}
+        <div class="alert alert-info">
+            <p><b>ФИО: {{el.name}}</b></p>
+            <p><b>Курс: {{el.curs}}</b></p>
+            <p><b>Факультет: {{el.faculty}}</b></p>
+            <p><b>Кафедра: {{el.department}}</b></p>
+            <p><b>Группа: {{el.group}}</b></p>
+            <p><b>Дата размещения: {{el.date.date()}}</b></p>
+            <a href="/display/{{el.id}}" class="btn btn-warning"> Подробнее </a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Нет ни одного студента!</p>
+    {% endif %}
+</div>
+{% endblock %}

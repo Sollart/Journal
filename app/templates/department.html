@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-1">
+    <br>
+<h2>Кафедра ГКН</h2><br>
+
+<h5>Список преподавателей</h5>
+     {% if teacher|length > 0 %}
+        {% for el in teacher %}
+        <div class="alert alert-info">
+            <p><b>{{el.name}}</b></p>
+            <a href="/department/{{el.id}}" class="btn btn-warning"> Подробнее </a>
+        </div>
+    {% endfor %}
+    {% else %}
+    <p>Нет ни одного преподавателя!</p>
+    {% endif %}
+</div>
+{% endblock %}
