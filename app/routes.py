@@ -9,9 +9,6 @@ from app.models import Student, Discipline, Teachers, Journal
 def test():
     return render_template("/test.html")
 
-@app.route("/sheduler")
-def sheduler():
-    return render_template("/sheduler.html")
 
 @app.route("/relations", methods=['GET', 'POST'])
 def relations():
@@ -33,11 +30,6 @@ def relations():
     students = Student.query.all()
     return render_template("/relations.html", teachers=teachers, disciplines=disciplines, students=students)
 
-
-@app.route('/search')
-def search():
-    name_discipline = Discipline.query.whoosh_search(request.args.get('query')).all()
-    return render_template("/discipline.html", name_discipline=name_discipline)
 
 @app.route("/", methods=['GET', 'POST'])
 @app.route('/home/', methods=['GET', 'POST'])   # Главная страница
@@ -70,57 +62,6 @@ def home_insert():
     return render_template("/home.html", teacher_id=teacher_id, teacher_name=teacher_name,
             disciplines=disciplines, dn=dn, data_exists=False)
 
-
-@app.route('/journal', methods=['GET', 'POST'])     # Страница "Журнал" с взаимосвяанными полями
-def journal_insert():
-    if request.method == 'POST':
-        student_id = request.form['student_id']
-        discipline_id = request.form['discipline_id']
-        q = Journal.query.filter(
-            Journal.student_id == student_id and Journal.teacher_id == current_user.get_id() and Journal.discipline_id == discipline_id).first()
-        if not q:
-            flash(" Студент не прикреплен к данной дисциплине дисциплине ")
-        else:
-            mark = request.form['mark']
-            category_discipline = request.form['category_discipline']
-            date = request.form['date']
-            poseshaemost = Poseshaemost(q.id, mark, category_discipline, date)
-
-            db.session.add(poseshaemost)
-            db.session.commit()
-            flash('Данные добавлены')
-    teacher_id = current_user.get_id()
-    journal = Journal.query.join(Teachers).filter(Teachers.id == teacher_id).all()
-    teachers = Teachers.query.all()
-    discipline = Discipline.query.all()
-    students = Student.query.all()
-
-    current_teacher = Teachers.query.get(teacher_id)
-    dn = db.session.query(Discipline).join(Journal, Teachers).filter(current_teacher.id == Teachers.id).all()   # Выбор дисциплины по преподу
-    sn = db.session.query(Student).join(Journal, Teachers).filter(current_teacher.id == Teachers.id).all()      # Выбор студента по преподу
-    teacher_name = current_teacher.name
-
-    return render_template("/journal.html", disciplines=discipline, students=students, journal=journal, teachers=teachers,
-                           teacher_name=teacher_name, sn=sn, dn=dn)
-
-@app.route('/journal', methods=['GET', 'POST'])
-def journal():
-    if request.method == 'POST':
-        teacher_id = int(request.form.get('teacher'))
-        student_id = int(request.form.get('student'))
-        discipline_id = int(request.form.get('discipline'))
-
-        journal = Journal(teacher_id, discipline_id, student_id)
-        db.session.add(journal)
-        db.session.commit()
-
-        flash('Запись добавлена')
-        return redirect('/journal/')
-    else:
-        teachers = Teachers.query.all()
-        students = Student.query.all()
-        disciplines = Discipline.query.all()
-        return render_template("/journal.html", teachers=teachers, students=students, disciplines=disciplines)
 
 @app.route('/login', methods=['GET', 'POST'])   # Логин
 def login_page():
@@ -165,6 +106,7 @@ def register():
 
 
 @app.route('/display')  # Отображение студентов
+
 
 def display():
     student = Student.query.order_by(Student.name.desc()).all()
