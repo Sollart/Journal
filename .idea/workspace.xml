@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ce37ee2-88ac-49a8-8e81-7758109456fb" name="Changes" comment="Журнал">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/relations.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/relations.html" afterDir="false" />
     </list>
@@ -181,7 +179,7 @@
       <workItem from="1654865276286" duration="5682000" />
       <workItem from="1654871082955" duration="4801000" />
       <workItem from="1654880786943" duration="526000" />
-      <workItem from="1654881372707" duration="1786000" />
+      <workItem from="1654881372707" duration="2784000" />
     </task>
     <task id="LOCAL-00001" summary="Журнал">
       <created>1654881782679</created>
@@ -190,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654881782679</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Журнал">
+      <created>1654883388239</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654883388239</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
