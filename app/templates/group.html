@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+<h1>Существующие группы студентов</h1><br>
+     {% if group|length > 0 %}
+        {% for el in group %}
+        <div class="alert alert-info">
+            <p><b>Наименование группы: {{el.name}}</b></p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Нет ни одной группы!</p>
+    {% endif %}
+</div>
+{% endblock %}

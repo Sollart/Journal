@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Добавление группы</h1><br>
+<form method="post">
+    <input type="text" name = "name" id="name" class="form-control" placeholder="Введите наименование группы"><br>
+    <input type="submit" class="btn btn-success" value="Добавить">
+</form>
+</div>
+{% endblock %}
