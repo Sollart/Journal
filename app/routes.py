@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, flash, url_for, session
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from app import db, app, manager
-from app.models import Student, Discipline, Teachers, Journal, Table
+from app.models import Student, Discipline, Teachers, Journal, Table, Group
 
 
 @app.route("/test")
@@ -33,9 +33,9 @@ def save_table():
 def relations():
     if request.method == 'POST':
         teacher_id = int(request.form.get('teacher'))
-        student_id = int(request.form.get('student'))
         discipline_id = int(request.form.get('discipline'))
-        journal = Journal(teacher_id, discipline_id, student_id)
+        group_id = int(request.form.get('group'))
+        journal = Journal(teacher_id, discipline_id, group_id)
         db.session.add(journal)
         try:
             db.session.commit()
@@ -46,8 +46,8 @@ def relations():
             flash('Запись добавлена')
     teachers = Teachers.query.all()
     disciplines = Discipline.query.all()
-    students = Student.query.all()
-    return render_template("/relations.html", teachers=teachers, disciplines=disciplines, students=students)
+    group = Group.query.all()
+    return render_template("/relations.html", teachers=teachers, disciplines=disciplines, group=group)
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -63,7 +63,6 @@ def home_insert():
     current_teacher = Teachers.query.get(teacher_id)
     teacher_name = Teachers.query.get(teacher_id).name
     disciplines = Journal.query.join(Discipline).join(Teachers, Teachers.id == Journal.teacher_id).all()
-    students = Journal.query.join(Teachers).join(Student).filter(Teachers.id == teacher_id).all()
 
     dn = db.session.query(Discipline).join(Journal, Teachers).all()
 
@@ -74,7 +73,7 @@ def home_insert():
         sn = db.session.query(Journal).join(Teachers, Student).filter(
                 current_teacher.id == Teachers.id).filter(Journal.discipline_id == selected_discipline_id).all()  # Выбор студента по преподу
         return render_template("/home.html", teacher_id=teacher_id, teacher_name=teacher_name,
-            disciplines=disciplines, students=students, dn=dn, sn=sn, data_exists=True)
+            disciplines=disciplines, dn=dn, sn=sn, data_exists=True)
 
 
     return render_template("/home.html", teacher_id=teacher_id, teacher_name=teacher_name,
@@ -124,11 +123,14 @@ def register():
 
 
 @app.route('/display')  # Отображение студентов
-
-
 def display():
     student = Student.query.order_by(Student.name.desc()).all()
     return render_template("/display.html", student=student)
+
+@app.route('/group')  # Отображение студентов
+def group():
+    group = Group.query.order_by(Group.name.desc()).all()
+    return render_template("/group.html", group=group)
 
 
 @app.route('/department')  # Отображение преподователей
@@ -279,3 +281,17 @@ def create_discipline():
         teachers = Teachers.query.all()
         return render_template("/create_discipline.html", teachers=teachers)
 
+
+@app.route('/create_group', methods=['POST', 'GET'])
+def create_group():
+    if request.method == "POST":
+        name = request.form['name']
+        group = Group(name=name)
+        try:
+            db.session.add(group)
+            db.session.commit()
+            return redirect("/group")
+        except:
+            return "При добавлении группы произошла ошибка..."
+    else:
+        return render_template("/create_group.html")

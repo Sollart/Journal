@@ -39,12 +39,12 @@
                  </td>
             </tr>
             <tr>
-                <td><h6>Студент</h6></td>
+                <td><h6>Группа</h6></td>
                 <td>
-                    <select name="student" class="form-select">
-                    {% for el in students %}
+                    <select name="group" class="form-select">
+                         {% for el in group %}
                     <option value="{{ el.id }}">{{ el.name }}</option>
-                    {% endfor %}
+                         {% endfor %}
                     </select>
                 </td>
             </tr>
@@ -61,7 +61,7 @@
             <br>
             <tr>
      <td><br><button type="submit" class="btn btn-primary"> Добавить связь </button></td>
-     <td><br><a class="btn btn-success offset-8 mt-1" href="/home"  role="button">Главная</a></td>
+     <td><br><a class="btn btn-success offset-10 mt-1" href="/home"  role="button">Главная</a></td>
      </tr>
         </table>
  </form>

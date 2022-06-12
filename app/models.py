@@ -15,16 +15,15 @@ class Journal(db.Model):
     discipline_id = db.Column(db.String(300), db.ForeignKey('discipline.id'), nullable=False)
     discipline = db.relationship('Discipline', backref=db.backref('rows', lazy=True))
 
-    student_id = db.Column(db.String(300), db.ForeignKey('student.id'), nullable=False)
-    student = db.relationship('Student', backref=db.backref('rows', lazy=True))
+    group_id = db.Column(db.String(300), db.ForeignKey('group.id'), nullable=False)
+    group = db.relationship('Group', backref=db.backref('rows', lazy=True))
 
-    __table_args__ = (UniqueConstraint('teacher_id', 'discipline_id', 'student_id'),)
+    __table_args__ = (UniqueConstraint('teacher_id', 'discipline_id', 'group_id'),)
 
-    def __init__(self, teacher_id, discipline_id, student_id):
+    def __init__(self, teacher_id, discipline_id, group_id):
         self.teacher_id = teacher_id
-        self.student_id = student_id
         self.discipline_id = discipline_id
-
+        self.group_id = group_id
     def __repr__(self):
         return '<Journal %r>' % self.id
 
@@ -56,6 +55,7 @@ class Teachers(db.Model, UserMixin):
     def __repr__(self):
         return 'Teachers %r' % self.id
 
+
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start_date = db.Column(db.DateTime, default=datetime.utcnow)
@@ -63,6 +63,7 @@ class Table(db.Model):
     text = db.Column(db.String(200), nullable=False)
     discipline = db.Column(db.String(200), nullable=False)
     teacher = db.Column(db.String(200), nullable=False)
+
     def __repr__(self):
         return 'Table %r' % self.id
 
@@ -77,6 +78,13 @@ class Discipline(db.Model):
     def __repr__(self):
         return 'Discipline %r' % self.id
 
+
+class Group(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+
+    def __repr__(self):
+            return 'Group %r' % self.id
 
 
 @manager.user_loader
