@@ -82,6 +82,7 @@
 				treetimeline: true,
 			});
 			scheduler.i18n.setLocale("ru");
+			scheduler.load("journal.db");
 			scheduler.locale.labels.timeline_tab = " Календарь ";
 			scheduler.locale.labels.section_custom= "Студент";
 			scheduler.config.details_on_create=true;
@@ -90,14 +91,15 @@
 			scheduler.config.full_day = false;
 			brief_mode = false;
 
-
+			var dp = scheduler.createDataProcessor("journal.db");
+			dp.init(scheduler);
 			//===============
 			//Configuration
 			//===============
 
 			var elements = [ // original hierarhical array to display
 				{key:10, label:"18 ФИИТ", open: true, children: [
-					{key:20, label:"Elizabeth Taylor"},
+					{key:20, label:"тут студент"},
 					{key:30, label:"Dian Fossey"}
 					]},
 				{key:40, label:"18 ПМИ ", open:true, children: [

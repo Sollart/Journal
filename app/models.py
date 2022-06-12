@@ -58,11 +58,11 @@ class Teachers(db.Model, UserMixin):
 
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student = db.Column(db.String(200), nullable=False)
+    start_date = db.Column(db.DateTime, default=datetime.utcnow)
+    end_date = db.Column(db.DateTime, default=datetime.utcnow)
+    text = db.Column(db.String(200), nullable=False)
     discipline = db.Column(db.String(200), nullable=False)
     teacher = db.Column(db.String(200), nullable=False)
-    date = db.Column(db.DateTime, default=datetime.utcnow)
-
     def __repr__(self):
         return 'Table %r' % self.id
 

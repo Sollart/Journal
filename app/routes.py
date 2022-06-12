@@ -5,9 +5,28 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app import db, app, manager
 from app.models import Student, Discipline, Teachers, Journal, Table
 
+
 @app.route("/test")
 def test():
     return render_template("/test.html")
+
+
+@app.route("/save", methods=['GET', 'POST'])
+def save_table():
+    if request.method == 'POST':
+        start_date = request.form["start_date"]
+        end_date = request.form["end_date"]
+        text = request.form["text"]
+        discipline = request.form["discipline"]
+        teacher = request.form["teacher"]
+        table = Table(start_date=start_date, end_date=end_date, text=text, discipline=discipline, teacher=teacher)
+        try:
+            db.session.add(table)
+            db.session.commit()
+            return redirect("/home")
+        except:
+            return "При cохранении произошла ошибка..."
+    return render_template("/home.html")
 
 
 @app.route("/relations", methods=['GET', 'POST'])
@@ -40,7 +59,6 @@ def home_insert():
     else:
         data_exists = False
         selected_discipline_id = 1
-
     teacher_id = current_user.get_id()
     current_teacher = Teachers.query.get(teacher_id)
     teacher_name = Teachers.query.get(teacher_id).name
